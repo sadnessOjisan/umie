@@ -5,7 +5,7 @@ import './index.css'
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 
-import {dummy_for_test_calling_wasm} from './pkg/wasm'
+import init, {dummy_for_test_calling_wasm} from './pkg/wasm'
 
 const firebaseConfig = {
   apiKey: "AIzaSyBamdEeb3h3eq0NlsqH-TGnMiMabv4L2-E",
@@ -20,6 +20,8 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
+
+await init()
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
