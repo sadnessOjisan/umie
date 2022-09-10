@@ -35,4 +35,3 @@ jobs:
           firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_UMIE_PRJ }}"
           channelId: live
           projectId: umie-prj
-        working-directory: website
