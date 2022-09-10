@@ -32,3 +32,4 @@ jobs:
           repoToken: "${{ secrets.GITHUB_TOKEN }}"
           firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_UMIE_PRJ }}"
           projectId: umie-prj
+        working-directory: website
