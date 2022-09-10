@@ -1,5 +1,11 @@
-pub fn add(left: usize, right: usize) -> usize {
-    left + right
+use core::add;
+
+use wasm_bindgen::prelude::wasm_bindgen;
+
+#[wasm_bindgen]
+pub fn dummy_for_test_calling_wasm() -> usize {
+    let actual = add(1, 2);
+    actual
 }
 
 #[cfg(test)]
@@ -8,7 +14,7 @@ mod tests {
 
     #[test]
     fn it_works() {
-        let result = add(2, 2);
-        assert_eq!(result, 4);
+        let result = dummy_for_test_calling_wasm();
+        assert_eq!(result, 3);
     }
 }
