@@ -43,3 +43,6 @@
 - name: A-workflow
   description: "Area: CI/CD workflow"
   color: "d7e102"
+- name: A-infra
+  description: "Area: infra (ex) firebase"
+  color: "d7e102"
