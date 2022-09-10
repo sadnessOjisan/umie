@@ -1,9 +1,22 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import reactLogo from './assets/react.svg'
 import './App.css'
+import init, { dummy_for_test_calling_wasm } from './pkg/wasm'
 
 function App() {
   const [count, setCount] = useState(0)
+  const [loadWasm, setLoadWasmFlg] = useState(false)
+
+  useEffect(()=>{
+    init().then(()=>{
+      setLoadWasmFlg(true)
+    })
+  })
+
+  useEffect(()=>{
+    if(!loadWasm)return
+    alert(`value from wasm: ${dummy_for_test_calling_wasm()}`)
+  },[setLoadWasmFlg])
 
   return (
     <div className="App">
