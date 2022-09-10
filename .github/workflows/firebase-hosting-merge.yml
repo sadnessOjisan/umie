@@ -7,7 +7,25 @@ name: Deploy to Firebase Hosting on merge
     branches:
       - main
 jobs:
+  build_wasm:
+    name: build wasm
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+      - run: curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh
+      - run: wasm-pack build --target web
+        working-directory: packages/wasm
+      - name: Archive code coverage results
+        uses: actions/upload-artifact@v3
+        with:
+          name: wasm
+          path: packages/wasm/pkg
   build_and_deploy:
+    name: use wasm
+    needs: build_wasm
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -27,6 +45,11 @@ jobs:
         name: Install npm packages
         run: npm install
         working-directory: website
+      - name: Download wasm to src/pkg
+        uses: actions/download-artifact@v3
+        with:
+          name: wasm
+          path: website/src/pkg
       - run: npm run build
         working-directory: website
       - uses: FirebaseExtended/action-hosting-deploy@v0
