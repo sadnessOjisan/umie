@@ -19,6 +19,17 @@ dependencies = [
 ]
 workspace = false
 
+[tasks.clean-all]
+script_runner = "@shell"
+script = '''
+rm -rf target
+rm -rf Cargo.lock
+rm -rf packages/wasm/pkg
+rm -rf website/dist
+rm -rf website/src/pkg
+'''
+workspace = false
+
 [tasks.build-wasm]
 script_runner = "@shell"
 script = '''
