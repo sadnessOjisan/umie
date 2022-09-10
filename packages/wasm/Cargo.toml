@@ -7,3 +7,4 @@ edition = "2021"
 
 [dependencies]
 core = { path = "../core" }
+wasm-bindgen = "0.2.82"
