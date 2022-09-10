@@ -46,3 +46,12 @@
 - name: A-infra
   description: "Area: infra (ex) firebase"
   color: "d7e102"
+- name: A-toolchain/linter
+  description: "Area: ilnter"
+  color: "d7e102"
+- name: A-toolchain/formatter
+  description: "Area: ilnter"
+  color: "d7e102"
+- name: A-toolchain/typescript
+  description: "Area: ilnter"
+  color: "d7e102"
