@@ -1,0 +1,42 @@
+- name: C-bug
+  description: "Category: bug"
+  color: "B60205"
+- name: C-refactor
+  description: "Category: refactor"
+  color: "B60205"
+- name: C-cleanup
+  description: "Category: cleanup"
+  color: "B60205"
+- name: C-documentation
+  description: "Category: documentation"
+  color: "B60205"
+- name: C-feature
+  description: "Category: feature"
+  color: "B60205"
+- name: A-web/vite
+  description: "Area: website's vite config"
+  color: "d7e102"
+- name: A-web/react
+  description: "Area: website's react"
+  color: "d7e102"
+- name: A-web/ui
+  description: "Area: website's UI"
+  color: "d7e102"
+- name: A-web/wasm
+  description: "Area: website's wasm"
+  color: "d7e102"
+- name: A-rust/core
+  description: "Area: mosaic core"
+  color: "d7e102"
+- name: A-rust/cli
+  description: "Area: rust cli"
+  color: "d7e102"
+- name: A-rust/wasm
+  description: "Area: rust wasm"
+  color: "d7e102"
+- name: A-rust/build
+  description: "Area: rust wasm"
+  color: "d7e102"
+- name: A-workflow
+  description: "Area: CI/CD workflow"
+  color: "d7e102"
