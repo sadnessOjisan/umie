@@ -13,6 +13,9 @@
 - name: C-feature
   description: "Category: feature"
   color: "B60205"
+- name: C-develop
+  description: "Category: develop"
+  color: "B60205"
 - name: A-web/vite
   description: "Area: website's vite config"
   color: "d7e102"
