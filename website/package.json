@@ -12,7 +12,8 @@
     "lint:fix": "npm run _eslint -- --fix",
     "_prettier": "prettier 'src/**/*.{js,jsx,ts,tsx,html,css,json,yaml,yml}'",
     "format:fix": "npm run _prettier -- --write",
-    "format:check": "npm run _prettier -- --check"
+    "format:check": "npm run _prettier -- --check",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "firebase": "^9.9.4",
