@@ -1,20 +1,8 @@
-use core::add;
+use core::mosaic;
 
 use wasm_bindgen::prelude::wasm_bindgen;
 
 #[wasm_bindgen]
-pub fn dummy_for_test_calling_wasm() -> usize {
-    let actual = add(1, 2);
-    actual
-}
-
-#[cfg(test)]
-mod tests {
-    use super::*;
-
-    #[test]
-    fn it_works() {
-        let result = dummy_for_test_calling_wasm();
-        assert_eq!(result, 3);
-    }
+pub fn exec_mosaic(buf: Vec<u32>, width: u32, height: u32) -> Vec<u32> {
+    mosaic(buf, width, height)
 }
