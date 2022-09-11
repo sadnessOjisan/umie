@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import "./App.css";
 import init, { dummy_for_test_calling_wasm } from "./pkg/wasm";
 
 function App() {
