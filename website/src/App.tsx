@@ -53,9 +53,25 @@ function App() {
 
   useEffect(() => {
     if (!loadedImage || !loadWasm) return;
-    canvasRef.current
-      ?.getContext("2d")
-      ?.drawImage(loadedImage, 0, 0, loadedImage.width, loadedImage.height);
+    const canvasRenderingContext = canvasRef.current?.getContext("2d");
+    if (!canvasRenderingContext) {
+      alert("Not found canvas el");
+      return;
+    }
+    canvasRenderingContext.drawImage(
+      loadedImage,
+      0,
+      0,
+      loadedImage.width,
+      loadedImage.height
+    );
+    const imageData = canvasRenderingContext.getImageData(
+      0,
+      0,
+      loadedImage.width,
+      loadedImage.height
+    );
+    console.log(imageData.data);
     console.log(dummy_for_test_calling_wasm());
   }, [loadedImage, loadWasm]);
 
