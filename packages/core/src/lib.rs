@@ -2,7 +2,7 @@ pub mod image;
 
 use image::Image;
 
-pub fn mosaic(buf: Vec<u32>, width: u32, height: u32) -> Vec<u32> {
+pub fn mosaic(buf: Vec<u8>, width: u32, height: u32) -> Vec<u8> {
     let img = Image { width, data: buf };
     let block_size: u32 = 32;
     for h in (0..height).step_by(block_size as usize) {
@@ -22,10 +22,10 @@ pub fn mosaic(buf: Vec<u32>, width: u32, height: u32) -> Vec<u32> {
                     if width <= w + x as u32 {
                         break;
                     }
-                    r_sum += *img.getPixel(w + x, h + y).0;
-                    g_sum += *img.getPixel(w + x, h + y).1;
-                    b_sum += *img.getPixel(w + x, h + y).2;
-                    a_sum += *img.getPixel(w + x, h + y).3;
+                    r_sum += *img.getPixel(w + x, h + y).0 as u32;
+                    g_sum += *img.getPixel(w + x, h + y).1 as u32;
+                    b_sum += *img.getPixel(w + x, h + y).2 as u32;
+                    a_sum += *img.getPixel(w + x, h + y).3 as u32;
                     safe_area_x = x + 1;
                 }
             }

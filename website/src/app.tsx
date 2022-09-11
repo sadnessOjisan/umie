@@ -1,5 +1,5 @@
 import { FormEvent, useCallback, useEffect, useRef, useState } from "react";
-import init, { dummy_for_test_calling_wasm } from "./pkg/wasm";
+import init, { exec_mosaic } from "./pkg/wasm";
 
 function App() {
   const [loadWasm, setLoadWasmFlg] = useState(false);
@@ -72,7 +72,12 @@ function App() {
       loadedImage.height
     );
     console.log(imageData.data);
-    console.log(dummy_for_test_calling_wasm());
+    const mosaiced = exec_mosaic(
+      imageData.data,
+      loadedImage.width,
+      loadedImage.height
+    );
+    console.log("mosaiced", mosaiced);
   }, [loadedImage, loadWasm]);
 
   return (

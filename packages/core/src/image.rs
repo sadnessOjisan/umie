@@ -1,6 +1,6 @@
 pub struct Image {
     pub width: u32,
-    pub data: Vec<u32>,
+    pub data: Vec<u8>,
 }
 
 struct Rgba {
@@ -14,7 +14,7 @@ struct Rgba {
 
 impl Image {
     /// y starts from 0
-    pub fn getPixel(&self, x: u32, y: u32) -> (&u32, &u32, &u32, &u32) {
+    pub fn getPixel(&self, x: u32, y: u32) -> (&u8, &u8, &u8, &u8) {
         let base_point = x + self.width * y;
         let r = self.data.get(base_point as usize).unwrap();
         let g = self.data.get(1 + base_point as usize).unwrap();
