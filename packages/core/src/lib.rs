@@ -1,11 +1,15 @@
 pub mod image;
 
+use std::vec;
+
 use image::Image;
 
 pub fn mosaic(buf: Vec<u8>, width: u32, height: u32) -> Vec<u8> {
     let img = Image { width, data: buf };
-    let block_size: u32 = 32;
+    let block_size: u32 = 8;
+    let mut vec = vec![];
     for h in (0..height).step_by(block_size as usize) {
+        let mut row = vec![];
         for w in (0..width).step_by(block_size as usize) {
             let mut r_sum: u32 = 0;
             let mut g_sum: u32 = 0;
@@ -30,23 +34,33 @@ pub fn mosaic(buf: Vec<u8>, width: u32, height: u32) -> Vec<u8> {
                 }
             }
 
+            println!("{}", safe_area_x);
+
             // for y in 0..safe_area_y {
-            //     for x in 0..safe_area_x {
-            //         img.put_pixel(
-            //             w + x,
-            //             h + y,
-            //             Rgba([
-            //                 (r_sum / (block_size * block_size)) as u8,
-            //                 (g_sum / (block_size * block_size)) as u8,
-            //                 (b_sum / (block_size * block_size)) as u8,
-            //                 (a_sum / (block_size * block_size)) as u8,
-            //             ]),
-            //         )
-            //     }
+            for x in 0..safe_area_x {
+                row.push((r_sum / (block_size * block_size)) as u8);
+                row.push((g_sum / (block_size * block_size)) as u8);
+                row.push((b_sum / (block_size * block_size)) as u8);
+                row.push((a_sum / (block_size * block_size)) as u8);
+
+                // img.put_pixel(
+                //     w + x,
+                //     h + y,
+                //     Rgba([
+                //         (r_sum / (block_size * block_size)) as u8,
+                //         (g_sum / (block_size * block_size)) as u8,
+                //         (b_sum / (block_size * block_size)) as u8,
+                //         (a_sum / (block_size * block_size)) as u8,
+                //     ]),
+                // )
+            }
             // }
+        }
+        for x in 0..block_size {
+            vec.push(row.clone());
         }
     }
     // img.as_raw().to_vec()
     // let _ = img.save("./umie/src/neww.jpeg");
-    img.data
+    vec.into_iter().flatten().collect()
 }

@@ -3,18 +3,13 @@ pub struct Image {
     pub data: Vec<u8>,
 }
 
-struct Rgba {
-    r: u32,
-    g: u32,
-    b: u32,
-    a: u32,
-}
+type Rgba<'a> = (&'a u8, &'a u8, &'a u8, &'a u8);
 
 // [r, g, b, a, r, g, b, a, r, g, b, a]
 
 impl Image {
     /// y starts from 0
-    pub fn getPixel(&self, x: u32, y: u32) -> (&u8, &u8, &u8, &u8) {
+    pub fn getPixel(&self, x: u32, y: u32) -> Rgba {
         let base_point = x + self.width * y;
         let r = self.data.get(base_point as usize).unwrap();
         let g = self.data.get(1 + base_point as usize).unwrap();
@@ -23,5 +18,9 @@ impl Image {
         (r, g, b, a)
     }
 
-    pub fn putPixel() {}
+    // pub fn putPixel(&self, x: u32, y: u32, rgba: Rgba) {
+    //     let base_point = x + self.width * y;
+    //     let a = &self.data.as_mut();
+    //     &self.data[base_point as usize] = rgba.0;
+    // }
 }

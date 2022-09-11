@@ -78,6 +78,11 @@ function App() {
       loadedImage.height
     );
     console.log("mosaiced", mosaiced);
+    const iamgedata = new ImageData(
+      new Uint8ClampedArray(mosaiced.buffer),
+      loadedImage.width
+    );
+    canvasRef.current?.getContext("2d")?.putImageData(iamgedata, 0, 0);
   }, [loadedImage, loadWasm]);
 
   return (
