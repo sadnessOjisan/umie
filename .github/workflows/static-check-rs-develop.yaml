@@ -3,7 +3,7 @@ name: static-check-rs
 on:
   push:
     paths:
-      - packages
+      - packages/**
       - Cargo.toml
       - Cargo.lock
       - Makefile.toml
