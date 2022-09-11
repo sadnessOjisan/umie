@@ -1,0 +1,13 @@
+name: static-check-ts
+description: Run static check for typescript
+runs:
+  using: composite
+  steps:
+    - run: npm run typecheck
+      shell: bash
+    - run: npm run lint:check
+      shell: bash
+    - run: npm run format:check
+      shell: bash
+    - run: npm run test
+      shell: bash
