@@ -2,13 +2,13 @@
 
 mosaic
 
-## how to use
+## 🤘 how to use
 
-### web
+### 🌍 For web
 
-TBD
+Go to https://umie.ojisan.dev/.
 
-### local
+### 🏠 For local
 
 Call workflow defined by cargo-make.
 

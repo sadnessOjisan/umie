@@ -3,7 +3,7 @@ name: static-check-ts
 on:
   push:
     paths:
-      - website
+      - website/**
   workflow_dispatch:
 
 jobs:
