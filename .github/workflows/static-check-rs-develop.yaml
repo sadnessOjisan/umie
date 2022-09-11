@@ -1,0 +1,18 @@
+name: static-check-rs
+
+on:
+  push:
+    paths:
+      - packages
+      - Cargo.toml
+      - Cargo.lock
+      - Makefile.toml
+  workflow_dispatch:
+
+jobs:
+  build:
+    if: "${{ github.event.pull_request.head.repo.full_name == github.repository }}"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ./.github/actions/static-check-rs
