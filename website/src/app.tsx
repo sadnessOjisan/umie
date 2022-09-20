@@ -4,6 +4,7 @@ import init, { exec_mosaic } from "./pkg/wasm";
 function App() {
   const [loadWasm, setLoadWasmFlg] = useState(false);
   const [loadedImage, setImage] = useState<HTMLImageElement | null>(null);
+  const [grain, setGrain] = useState(0);
 
   const rawImagecanvasRef = useRef<HTMLCanvasElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -29,13 +30,17 @@ function App() {
     const inputForm = e.target;
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
+    const grain = Number((inputForm["grain"] as HTMLInputElement).value);
+    setGrain(grain);
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
     const fileInputEl = inputForm["file"];
     const [file] = fileInputEl.files as FileList;
     if (!file) {
       alert("ファイルが選択されていません。");
       return;
     }
-    console.log(fileInputEl.files[0]);
+
     const reader = new FileReader();
     reader.readAsDataURL(file);
     reader.addEventListener("load", (event) => {
@@ -72,15 +77,15 @@ function App() {
       loadedImage.width,
       loadedImage.height
     );
-    console.log(imageData.data);
     rawImagecanvasRef.current?.getContext("2d")?.putImageData(imageData, 0, 0);
 
     const mosaiced = exec_mosaic(
       imageData.data,
+      grain,
       loadedImage.width,
       loadedImage.height
     );
-    console.log("mosaiced", mosaiced);
+
     const iamgedata = new ImageData(
       new Uint8ClampedArray(mosaiced.buffer),
       loadedImage.width
@@ -91,7 +96,7 @@ function App() {
   return (
     <div className="App">
       <h1>UMIE</h1>
-      <p>Online wasm based mosaic tool</p>
+      <p>Online mosaic tool.</p>
       <p>
         Tech stack is{" "}
         <a href="https://blog.ojisan.io/rust-mosaic-web-app/" target="_brank">
@@ -99,10 +104,17 @@ function App() {
         </a>
       </p>
       <form onSubmit={handleSubmit}>
-        <label htmlFor="grain-input">荒さ</label>
-        <input type="number" min="0" id="grain-input"></input>
-        <label htmlFor="file-input">画像</label>
-        <input type="file" name="file" id="file-input"></input>
+        <label htmlFor="grain-input">Grain</label>
+        <input
+          name="grain"
+          type="number"
+          min="0"
+          id="grain-input"
+          defaultValue={16}
+          required
+        ></input>
+        <label htmlFor="file-input">Image</label>
+        <input type="file" name="file" id="file-input" required></input>
         <br />
         <button type="submit">Run</button>
       </form>
