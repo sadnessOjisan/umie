@@ -91,13 +91,20 @@ function App() {
   return (
     <div className="App">
       <h1>UMIE</h1>
+      <p>Online wasm based mosaic tool</p>
+      <p>
+        Tech stack is{" "}
+        <a href="https://blog.ojisan.io/rust-mosaic-web-app/" target="_brank">
+          here
+        </a>
+      </p>
       <form onSubmit={handleSubmit}>
         <label htmlFor="grain-input">荒さ</label>
         <input type="number" min="0" id="grain-input"></input>
         <label htmlFor="file-input">画像</label>
         <input type="file" name="file" id="file-input"></input>
         <br />
-        <button type="submit">submit</button>
+        <button type="submit">Run</button>
       </form>
       <canvas
         ref={rawImagecanvasRef}
