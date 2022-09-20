@@ -5,6 +5,7 @@ function App() {
   const [loadWasm, setLoadWasmFlg] = useState(false);
   const [loadedImage, setImage] = useState<HTMLImageElement | null>(null);
 
+  const rawImagecanvasRef = useRef<HTMLCanvasElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
@@ -72,6 +73,8 @@ function App() {
       loadedImage.height
     );
     console.log(imageData.data);
+    rawImagecanvasRef.current?.getContext("2d")?.putImageData(imageData, 0, 0);
+
     const mosaiced = exec_mosaic(
       imageData.data,
       loadedImage.width,
@@ -94,7 +97,18 @@ function App() {
         <input type="file" name="file"></input>
         <button type="submit">submit</button>
       </form>
-      <canvas ref={canvasRef}></canvas>
+      <canvas
+        ref={rawImagecanvasRef}
+        width={loadedImage?.width}
+        height={loadedImage?.height}
+        style={{ maxWidth: "100%", maxHeight: "400px" }}
+      ></canvas>
+      <canvas
+        ref={canvasRef}
+        width={loadedImage?.width}
+        height={loadedImage?.height}
+        style={{ maxWidth: "100%", maxHeight: "400px" }}
+      ></canvas>
     </div>
   );
 }
