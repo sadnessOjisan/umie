@@ -3,6 +3,7 @@ import ReactDOM from "react-dom/client";
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import App from "./app";
+import "./mercury.min.css";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBamdEeb3h3eq0NlsqH-TGnMiMabv4L2-E",
