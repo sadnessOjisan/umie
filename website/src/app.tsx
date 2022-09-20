@@ -90,11 +90,13 @@ function App() {
 
   return (
     <div className="App">
-      hello
+      <h1>UMIE</h1>
       <form onSubmit={handleSubmit}>
         <label htmlFor="grain-input">荒さ</label>
         <input type="number" min="0" id="grain-input"></input>
-        <input type="file" name="file"></input>
+        <label htmlFor="file-input">画像</label>
+        <input type="file" name="file" id="file-input"></input>
+        <br />
         <button type="submit">submit</button>
       </form>
       <canvas
