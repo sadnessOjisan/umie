@@ -8,7 +8,7 @@ fn main() {
     let width = img.width();
     let height = img.height();
     let vec = img.as_bytes().to_vec();
-    let converted = exec(vec, width, height);
+    let converted = exec(vec, 32, width, height);
     let img = RgbaImage::from_vec(width, height, converted).unwrap();
     let _ = img.save("./packages/cli/src/result.png");
 }
