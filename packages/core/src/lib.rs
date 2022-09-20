@@ -1,10 +1,10 @@
 use image::{EncodableLayout, ImageBuffer, Rgba};
 
-pub fn exec(buf: Vec<u8>, width: u32, height: u32) -> Vec<u8> {
+pub fn exec(buf: Vec<u8>, grain: u32, width: u32, height: u32) -> Vec<u8> {
     let mut img: ImageBuffer<Rgba<u8>, Vec<_>> = ImageBuffer::from_raw(width, height, buf).unwrap();
     let width = img.width();
     let height = img.height();
-    let block_size: u32 = 32;
+    let block_size: u32 = grain;
     for h in (0..height).step_by(block_size as usize) {
         for w in (0..width).step_by(block_size as usize) {
             let mut r_sum: u32 = 0;
